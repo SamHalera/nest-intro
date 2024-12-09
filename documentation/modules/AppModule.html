@@ -274,6 +274,7 @@ import { UsersModule } from &#x27;./users/users.module&#x27;;
 import { PostsModule } from &#x27;./posts/posts.module&#x27;;
 import { AuthModule } from &#x27;./auth/auth.module&#x27;;
 import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
+import { User } from &#x27;./users/user.entity&#x27;;
 
 @Module({
   imports: [
@@ -285,7 +286,7 @@ import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
       inject: [],
       useFactory: () &#x3D;&gt; ({
         type: &#x27;postgres&#x27;,
-        entities: [],
+        entities: [User],
         synchronize: true, //only in development mode
         port: 5433,
         username: &#x27;postgres&#x27;,
