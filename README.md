@@ -34,7 +34,7 @@ url <a href="http:localhost:3000/api" target="_blank">http:localhost:3000/api</a
 
 ### Compodoc Documentation
 
-url <a href=" http:localhost:3001"> http:localhost:3001</a>
+url <a href=" http:localhost:3001" target="\_blank> http:localhost:3001</a>
 
 ## Project setup
 

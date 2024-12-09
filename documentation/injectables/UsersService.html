@@ -119,6 +119,13 @@
         </p>
 
 
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Class to connect to Usaesr table and perform business operations</p>
+
+            </p>
 
 
 
@@ -153,54 +160,6 @@
     </table>
 </section>
 
-            <section data-compodoc="block-constructor">
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>)</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="6" class="link-to-prism">src/users/providers/users.service.ts:6</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div>
-                                    <b>Parameters :</b>
-                                    <table class="params">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                    <td>Type</td>
-                                                <td>Optional</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                                <tr>
-                                                        <td>authService</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                        </tbody>
-                                    </table>
-                            </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
             <section data-compodoc="block-methods">
     
@@ -227,14 +186,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="12"
-                                    class="link-to-prism">src/users/providers/users.service.ts:12</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="22"
+                                    class="link-to-prism">src/users/providers/users.service.ts:22</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>The method to get all users from database</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -318,14 +279,16 @@
 
                     <tr>
                         <td class="col-md-4">
-                            <div class="io-line">Defined in <a href="" data-line="28"
-                                    class="link-to-prism">src/users/providers/users.service.ts:28</a></div>
+                            <div class="io-line">Defined in <a href="" data-line="44"
+                                    class="link-to-prism">src/users/providers/users.service.ts:44</a></div>
                         </td>
                     </tr>
 
 
             <tr>
                 <td class="col-md-4">
+                        <div class="io-description"><p>Find a single user by ID User</p>
+</div>
 
                             <div class="io-description">
                                 <b>Parameters :</b>
@@ -375,18 +338,28 @@
 import { GetUsersParamDto } from &#x27;../dtos/get-users-param.dto&#x27;;
 import { AuthService } from &#x27;src/auth/providers/auth.service&#x27;;
 
+/**
+ * Class to connect to Usaesr table and perform business operations
+ */
 @Injectable()
 export class UsersService {
-  constructor(
-    @Inject(forwardRef(() &#x3D;&gt; AuthService))
-    private readonly authService: AuthService,
-  ) {}
+  // constructor(
+  //   @Inject(forwardRef(() &#x3D;&gt; AuthService))
+  //   private readonly authService: AuthService,
+  // ) {}
 
+  /**
+   * The method to get all users from database
+   * @param getUsersParamDto
+   * @param limit
+   * @param page
+   * @returns
+   */
   findAll(getUsersParamDto: GetUsersParamDto, limit: number, page: number) {
-    //AuthService
-    const isAuth &#x3D; this.authService.isAuthenticated();
-    console.log(isAuth);
-    return [
+    // //AuthService
+    // const isAuth &#x3D; this.authService.isAuthenticated();
+    // console.log(isAuth);
+    const users &#x3D; [
       {
         firstName: &#x27;John&#x27;,
         email: &#x27;john@mail.com&#x27;,
@@ -396,8 +369,14 @@ export class UsersService {
         email: &#x27;peter@mail.com&#x27;,
       },
     ];
+    return users;
   }
 
+  /**
+   * Find a single user by ID User
+   * @param id
+   * @returns
+   */
   findOneById(id: string) {
     console.log(&#x27;findOneById method&#x3D;&#x3D;&gt;&#x27;, id);
     const user &#x3D; {
