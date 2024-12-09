@@ -280,15 +280,19 @@ import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
     UsersModule,
     PostsModule,
     AuthModule,
-    TypeOrmModule.forRoot({
-      type: &#x27;postgres&#x27;,
-      entities: [],
-      synchronize: true, //only in development mode
-      port: 5433,
-      username: &#x27;postgres&#x27;,
-      password: &#x27;Zamulele15$&#x27;,
-      host: &#x27;localhost&#x27;,
-      database: &#x27;nestjs-blog&#x27;,
+    TypeOrmModule.forRootAsync({
+      imports: [],
+      inject: [],
+      useFactory: () &#x3D;&gt; ({
+        type: &#x27;postgres&#x27;,
+        entities: [],
+        synchronize: true, //only in development mode
+        port: 5433,
+        username: &#x27;postgres&#x27;,
+        password: &#x27;Zamulele15$&#x27;,
+        host: &#x27;localhost&#x27;,
+        database: &#x27;nestjs-blog&#x27;,
+      }),
     }),
   ],
   controllers: [AppController],
