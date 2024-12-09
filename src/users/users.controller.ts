@@ -69,8 +69,9 @@ export class UsersController {
 
   @Post()
   public createUsers(@Body() createUserDto: CreateUserDto) {
-    console.log('createUserDto==>', createUserDto);
-    return 'Post request to te route createUsers';
+    const newUser = this.usersService.createUser(createUserDto);
+
+    return newUser;
   }
 
   @Patch()

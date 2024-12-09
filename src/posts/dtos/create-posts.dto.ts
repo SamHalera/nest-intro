@@ -10,6 +10,7 @@ import {
   IsString,
   IsUrl,
   Matches,
+  MaxLength,
   MinLength,
   ValidateNested,
 } from 'class-validator';
@@ -25,7 +26,8 @@ export class CreatePostDto {
   })
   @IsString()
   @IsNotEmpty()
-  @MinLength(3, { message: 'Too short' })
+  @MinLength(3, { message: 'Title is too short' })
+  @MaxLength(512, { message: 'Title is too Long' })
   title: string;
 
   @ApiProperty({
@@ -41,7 +43,8 @@ export class CreatePostDto {
   })
   @IsString()
   @IsNotEmpty()
-  @MinLength(3, { message: 'Too short' })
+  @MinLength(3, { message: 'Slug is too short' })
+  @MaxLength(256, { message: 'Slug is too Long' })
   @Matches(/^[a-z0-9]+(?:-[a-z09]+)*$/, {
     message:
       'A slug should be all small letters and uses only "-" and without spaces. For example "my-url"',
@@ -81,6 +84,7 @@ export class CreatePostDto {
   })
   @IsOptional()
   @IsUrl()
+  @MaxLength(1024)
   featuredImageUrl?: string;
 
   @ApiPropertyOptional({

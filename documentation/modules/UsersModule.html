@@ -241,12 +241,14 @@
 import { UsersController } from &#x27;./users.controller&#x27;;
 import { UsersService } from &#x27;./providers/users.service&#x27;;
 import { AuthModule } from &#x27;src/auth/auth.module&#x27;;
+import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
+import { User } from &#x27;./user.entity&#x27;;
 
 @Module({
   controllers: [UsersController],
   providers: [UsersService],
   exports: [UsersService], //for dependency injection in others modules
-  imports: [forwardRef(() &#x3D;&gt; AuthModule)],
+  imports: [forwardRef(() &#x3D;&gt; AuthModule), TypeOrmModule.forFeature([User])],
 })
 export class UsersModule {}
 </code></pre>

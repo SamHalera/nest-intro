@@ -241,11 +241,13 @@
 import { PostsController } from &#x27;./posts.controller&#x27;;
 import { PostsService } from &#x27;./providers/posts.service&#x27;;
 import { UsersModule } from &#x27;src/users/users.module&#x27;;
+import { TypeOrmModule } from &#x27;@nestjs/typeorm&#x27;;
+import { Post } from &#x27;./post.entity&#x27;;
 
 @Module({
   controllers: [PostsController],
   providers: [PostsService],
-  imports: [UsersModule], //for dependency injection from others modules
+  imports: [UsersModule, TypeOrmModule.forFeature([Post])], //for dependency injection from others modules
 })
 export class PostsModule {}
 </code></pre>
