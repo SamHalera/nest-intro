@@ -26,6 +26,16 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Documentation
+
+### Swagger Documentation
+
+url http:localhost:3000/api
+
+### Compodoc Documentation
+
+port http:localhost:3001
+
 ## Project setup
 
 ```bash
