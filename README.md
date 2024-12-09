@@ -30,11 +30,11 @@
 
 ### Swagger Documentation
 
-url http:localhost:3000/api
+url <a href="http:localhost:3000/api" target="_blank">http:localhost:3000/api</a>
 
 ### Compodoc Documentation
 
-port http:localhost:3001
+url <a href=" http:localhost:3001"> http:localhost:3001</a>
 
 ## Project setup
 
