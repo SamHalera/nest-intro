@@ -150,6 +150,7 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                     <span class="modifier">Optional</span>
                                 <a href="#featuredImageUrl" >featuredImageUrl</a>
                             </li>
@@ -188,6 +189,7 @@
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
+                                    <span class="modifier"></span>
                                 <a href="#slug" >slug</a>
                             </li>
                             <li>
@@ -206,6 +208,7 @@
                                 <a href="#tags" >tags</a>
                             </li>
                             <li>
+                                    <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
                                     <span class="modifier"></span>
@@ -263,7 +266,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:69</a></div>
                         </td>
                     </tr>
 
@@ -276,6 +279,7 @@
                 <td class="col-md-4">
                     <a name="featuredImageUrl"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
@@ -296,13 +300,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiPropertyOptional({description: &#x27;Featured image for your blog post&#x27;, example: &#x27;http://localhost.com/images.jpg&#x27;})<br />@IsOptional()<br />@IsUrl()<br />
+                            @ApiPropertyOptional({description: &#x27;Featured image for your blog post&#x27;, example: &#x27;http://localhost.com/images.jpg&#x27;})<br />@IsOptional()<br />@IsUrl()<br />@MaxLength(1024)<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:84</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:88</a></div>
                         </td>
                     </tr>
 
@@ -343,7 +347,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:128</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:132</a></div>
                         </td>
                     </tr>
 
@@ -381,7 +385,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:37</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:39</a></div>
                         </td>
                     </tr>
 
@@ -420,7 +424,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:92</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:96</a></div>
                         </td>
                     </tr>
 
@@ -462,7 +466,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:76</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:79</a></div>
                         </td>
                     </tr>
 
@@ -475,6 +479,7 @@
                 <td class="col-md-4">
                     <a name="slug"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
@@ -496,13 +501,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;For exemple : &#x27;my-url&#x27;&#x27;})<br />@IsString()<br />@IsNotEmpty()<br />@MinLength(3, {message: &#x27;Too short&#x27;})<br />@Matches(/^[a-z0-9]+(?:-[a-z09]+)*$/, {message: &#x27;A slug should be all small letters and uses only &quot;-&quot; and without spaces. For example &quot;my-url&quot;&#x27;})<br />
+                            @ApiProperty({description: &#x27;For exemple : &#x27;my-url&#x27;&#x27;})<br />@IsString()<br />@IsNotEmpty()<br />@MinLength(3, {message: &#x27;Slug is too short&#x27;})<br />@MaxLength(256, {message: &#x27;Slug is too Long&#x27;})<br />@Matches(/^[a-z0-9]+(?:-[a-z09]+)*$/, {message: &#x27;A slug should be all small letters and uses only &quot;-&quot; and without spaces. For example &quot;my-url&quot;&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:49</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:52</a></div>
                         </td>
                     </tr>
 
@@ -540,7 +545,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:58</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:61</a></div>
                         </td>
                     </tr>
 
@@ -581,7 +586,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="102" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:102</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:106</a></div>
                         </td>
                     </tr>
 
@@ -594,6 +599,7 @@
                 <td class="col-md-4">
                     <a name="title"></a>
                     <span class="name">
+                            <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
                             <span class="modifier"></span>
@@ -614,13 +620,13 @@
                         <b>Decorators : </b>
                         <br />
                         <code>
-                            @ApiProperty({description: &#x27;This is the title for the post&#x27;, example: &#x27;This is the title&#x27;})<br />@IsString()<br />@IsNotEmpty()<br />@MinLength(3, {message: &#x27;Too short&#x27;})<br />
+                            @ApiProperty({description: &#x27;This is the title for the post&#x27;, example: &#x27;This is the title&#x27;})<br />@IsString()<br />@IsNotEmpty()<br />@MinLength(3, {message: &#x27;Title is too short&#x27;})<br />@MaxLength(512, {message: &#x27;Title is too Long&#x27;})<br />
                         </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:29</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/posts/dtos/create-posts.dto.ts:31</a></div>
                         </td>
                     </tr>
 
@@ -651,6 +657,7 @@ import {
   IsString,
   IsUrl,
   Matches,
+  MaxLength,
   MinLength,
   ValidateNested,
 } from &#x27;class-validator&#x27;;
@@ -666,7 +673,8 @@ export class CreatePostDto {
   })
   @IsString()
   @IsNotEmpty()
-  @MinLength(3, { message: &#x27;Too short&#x27; })
+  @MinLength(3, { message: &#x27;Title is too short&#x27; })
+  @MaxLength(512, { message: &#x27;Title is too Long&#x27; })
   title: string;
 
   @ApiProperty({
@@ -682,7 +690,8 @@ export class CreatePostDto {
   })
   @IsString()
   @IsNotEmpty()
-  @MinLength(3, { message: &#x27;Too short&#x27; })
+  @MinLength(3, { message: &#x27;Slug is too short&#x27; })
+  @MaxLength(256, { message: &#x27;Slug is too Long&#x27; })
   @Matches(/^[a-z0-9]+(?:-[a-z09]+)*$/, {
     message:
       &#x27;A slug should be all small letters and uses only &quot;-&quot; and without spaces. For example &quot;my-url&quot;&#x27;,
@@ -722,6 +731,7 @@ export class CreatePostDto {
   })
   @IsOptional()
   @IsUrl()
+  @MaxLength(1024)
   featuredImageUrl?: string;
 
   @ApiPropertyOptional({
