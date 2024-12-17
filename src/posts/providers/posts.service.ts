@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Body, Injectable } from '@nestjs/common';
 import { UsersService } from 'src/users/providers/users.service';
 import { Repository } from 'typeorm';
 import { Post } from '../post.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreatePostDto } from '../dtos/create-posts.dto';
+import { MetaOption } from 'src/meta-options/meta-options.entity';
 
 @Injectable()
 export class PostsService {
@@ -15,9 +16,15 @@ export class PostsService {
      */
     @InjectRepository(Post)
     private postRepository: Repository<Post>,
+
+    /**
+     * Injection of MetaOptionsRepository
+     */
+    @InjectRepository(MetaOption)
+    public metaOptionsRepository: Repository<MetaOption>,
   ) {}
 
-  public async createPost(createPostDto: CreatePostDto) {
+  public async createPost(@Body() createPostDto: CreatePostDto) {
     const existingPost = await this.postRepository.findOne({
       where: { slug: createPostDto.slug },
     });
@@ -26,29 +33,31 @@ export class PostsService {
       //handle error
     } else {
       let newPost = this.postRepository.create(createPostDto);
+
+      return await this.postRepository.save(newPost);
     }
   }
-  findAll(userId: string) {
+  public async findAll(userId: string) {
     console.log('userId from arg==>', userId);
 
     const user = this.usersService.findOneById(userId);
 
-    if (user) {
-      console.log(user);
-      const posts = [
-        {
-          user: user,
-          title: 'Title 1',
-          conttetn: 'Content 1',
-        },
-        {
-          user: user,
-          title: 'Title 2',
-          conttetn: 'Content 2',
-        },
-      ];
-      return posts;
-    }
-    return null;
+    //in order to populate the relations entities
+    // we can use the object options into find :
+    // {
+    //   relations: {
+    //     metaOptions: true,
+    //   },
+    // }
+    //Or we can add eager:true option to @OneToOne decorator inside Entity
+    const post = await this.postRepository.find();
+
+    return post;
+  }
+
+  public async delete(id: number) {
+    await this.postRepository.delete(id);
+
+    return { deleted: true, id };
   }
 }

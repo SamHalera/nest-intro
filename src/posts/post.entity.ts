@@ -1,7 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { PostType } from './enums/postType.enum';
 import { PostStatus } from './enums/postStatus.enum';
-import { CreatePostMetaOptionsDto } from './dtos/create-post-metaOptions.dto';
+import { CreatePostMetaOptionsDto } from '../meta-options/dtos/create-post-metaOptions.dto';
+import { MetaOption } from 'src/meta-options/meta-options.entity';
 
 @Entity()
 export class Post {
@@ -60,20 +67,23 @@ export class Post {
   featuredImageUrl?: string;
 
   @Column({
-    type: 'timestamp',
+    type: 'timestamp', //datetime if mysql
     nullable: true,
   })
   publishOn?: Date;
 
-  //   @Column({
-  //     type: 'array',
-  //     nullable: true,
-  //   })
+  //******** RELATIONSHIPS *****////////
+
+  @OneToOne(() => MetaOption, (metaOptions) => metaOptions.post, {
+    cascade: ['insert', 'remove'],
+    eager: true,
+  })
+  metaOptions?: MetaOption;
+
   tags?: string[];
 
   //   @Column({
   //     type: 'array',
   //     nullable: true,
   //   })
-  metaOptions?: CreatePostMetaOptionsDto[];
 }
