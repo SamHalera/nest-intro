@@ -1,9 +1,11 @@
 // https://orkhan.gitbook.io/typeorm/docs/decorator-reference
+import { Post } from 'src/posts/post.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  ManyToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -49,6 +51,11 @@ export class Tag {
   featuresImageUrl?: string;
 
   // https://orkhan.gitbook.io/typeorm/docs/decorator-reference
+
+  @ManyToMany(() => Post, (post) => post.tags, {
+    onDelete: 'CASCADE',
+  })
+  posts: Post[];
 
   @CreateDateColumn()
   createDate: Date;

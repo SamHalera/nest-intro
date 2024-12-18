@@ -10,7 +10,7 @@ import {
   MinLength,
 } from 'class-validator';
 
-export class CreateTageDto {
+export class CreateTagDto {
   @ApiProperty()
   @IsString()
   @IsNotEmpty()
@@ -43,5 +43,6 @@ export class CreateTageDto {
   @ApiPropertyOptional()
   @IsUrl()
   @MaxLength(1024)
+  @IsOptional()
   featuresImageUrl?: string;
 }

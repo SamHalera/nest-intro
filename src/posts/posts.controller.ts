@@ -20,10 +20,8 @@ import { PatchPostDto } from './dtos/patch-post.dto';
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
   @Get('/:userId?')
-  public getPosts(@Param('userId') userId: string) {
-    console.log('userId==>', userId);
-
-    const posts = this.postsService.findAll(userId);
+  public getPosts() {
+    const posts = this.postsService.findAll();
     console.log(posts);
 
     return posts;
@@ -50,7 +48,7 @@ export class PostsController {
   })
   @Patch()
   public updatePost(@Body() patchPostDto: PatchPostDto) {
-    console.log(patchPostDto);
+    return this.postsService.update(patchPostDto);
   }
 
   @Delete()

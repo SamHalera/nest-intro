@@ -67,17 +67,8 @@ export class UsersService {
    * @param id
    * @returns
    */
-  findOneById(id: string) {
-    console.log('findOneById method==>', id);
-    const user = {
-      id: 2,
-      firstName: 'Peter',
-      email: 'peter@mail.com',
-    };
-    if (user.id === parseFloat(id)) {
-      console.log(user);
-      return user;
-    }
+  async findOneById(id: number) {
+    return await this.userRepository.findOneBy({ id });
     return null;
   }
 }

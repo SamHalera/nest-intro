@@ -2,6 +2,9 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -9,6 +12,8 @@ import { PostType } from './enums/postType.enum';
 import { PostStatus } from './enums/postStatus.enum';
 import { CreatePostMetaOptionsDto } from '../meta-options/dtos/create-post-metaOptions.dto';
 import { MetaOption } from 'src/meta-options/meta-options.entity';
+import { User } from 'src/users/user.entity';
+import { Tag } from 'src/tags/tags.entity';
 
 @Entity()
 export class Post {
@@ -80,10 +85,16 @@ export class Post {
   })
   metaOptions?: MetaOption;
 
-  tags?: string[];
+  @ManyToMany(() => Tag, (tag) => tag.posts, {
+    eager: true,
+  })
+  @JoinTable()
+  tags?: Tag[];
 
-  //   @Column({
-  //     type: 'array',
-  //     nullable: true,
-  //   })
+  //FK only present in the table of the ManyToOne
+  @ManyToOne(() => User, (user) => user.posts, {
+    eager: true,
+  })
+  @JoinTable()
+  author: User;
 }
