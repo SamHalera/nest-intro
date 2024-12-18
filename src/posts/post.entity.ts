@@ -1,7 +1,19 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { PostType } from './enums/postType.enum';
 import { PostStatus } from './enums/postStatus.enum';
-import { CreatePostMetaOptionsDto } from './dtos/create-post-metaOptions.dto';
+import { CreatePostMetaOptionsDto } from '../meta-options/dtos/create-post-metaOptions.dto';
+import { MetaOption } from 'src/meta-options/meta-options.entity';
+import { User } from 'src/users/user.entity';
+import { Tag } from 'src/tags/tags.entity';
 
 @Entity()
 export class Post {
@@ -60,20 +72,29 @@ export class Post {
   featuredImageUrl?: string;
 
   @Column({
-    type: 'timestamp',
+    type: 'timestamp', //datetime if mysql
     nullable: true,
   })
   publishOn?: Date;
 
-  //   @Column({
-  //     type: 'array',
-  //     nullable: true,
-  //   })
-  tags?: string[];
+  //******** RELATIONSHIPS *****////////
 
-  //   @Column({
-  //     type: 'array',
-  //     nullable: true,
-  //   })
-  metaOptions?: CreatePostMetaOptionsDto[];
+  @OneToOne(() => MetaOption, (metaOptions) => metaOptions.post, {
+    cascade: ['insert', 'remove'],
+    eager: true,
+  })
+  metaOptions?: MetaOption;
+
+  @ManyToMany(() => Tag, (tag) => tag.posts, {
+    eager: true,
+  })
+  @JoinTable()
+  tags?: Tag[];
+
+  //FK only present in the table of the ManyToOne
+  @ManyToOne(() => User, (user) => user.posts, {
+    eager: true,
+  })
+  @JoinTable()
+  author: User;
 }

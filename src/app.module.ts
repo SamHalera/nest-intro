@@ -9,6 +9,10 @@ import { User } from './users/user.entity';
 import { ProductsModule } from './products/products.module';
 import { Product } from './products/product.entity';
 import { CartModule } from './cart/cart.module';
+import { TagsModule } from './tags/tags.module';
+import { MetaOptionsModule } from './meta-options/meta-options.module';
+import { Post } from './posts/post.entity';
+import { Tag } from './tags/tags.entity';
 
 @Module({
   imports: [
@@ -20,7 +24,8 @@ import { CartModule } from './cart/cart.module';
       inject: [],
       useFactory: () => ({
         type: 'postgres',
-        entities: [User, Product],
+        // entities: [User],
+        autoLoadEntities: true,
         synchronize: true, //only in development mode
         port: 5433,
         username: 'postgres',
@@ -29,8 +34,8 @@ import { CartModule } from './cart/cart.module';
         database: 'nestjs-blog',
       }),
     }),
-    ProductsModule,
-    CartModule,
+    TagsModule,
+    MetaOptionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
