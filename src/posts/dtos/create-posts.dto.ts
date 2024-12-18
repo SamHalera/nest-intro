@@ -1,9 +1,7 @@
 import { Type } from 'class-transformer';
 import {
   IsArray,
-  IsDate,
   IsEnum,
-  IsIn,
   IsInt,
   IsISO8601,
   IsJSON,

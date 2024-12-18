@@ -54,12 +54,9 @@ export class UsersController {
   ) {
     console.log(getUsersParamDto);
     if (getUsersParamDto.id) {
-      console.log('ici');
-
       const user = this.usersService.findOneById(getUsersParamDto.id);
       return user;
     }
-    console.log('nop ici');
     const users = this.usersService.findAll(getUsersParamDto, limit, page);
 
     return users;
