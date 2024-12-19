@@ -19,6 +19,7 @@ import { GetUsersParamDto } from './dtos/get-users-param.dto';
 import { PatchUserDto } from './dtos/patch-user.dto';
 import { UsersService } from './providers/users.service';
 import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { CreateManyUsersDto } from './dtos/create-many-user.dto';
 
 @Controller('users')
 @ApiTags('Users')
@@ -67,6 +68,16 @@ export class UsersController {
     const newUser = this.usersService.createUser(createUserDto);
 
     return newUser;
+  }
+  @Post('create-many')
+  /*
+   * If CreateUserDto is defined as array it do not give validation on fields but only type safety
+   *Need to change config in the DTO TODO
+   */
+  public createManyUsers(@Body() createManyUsersDto: CreateManyUsersDto) {
+    const newUsers = this.usersService.createMany(createManyUsersDto);
+
+    return newUsers;
   }
 
   @Patch()
